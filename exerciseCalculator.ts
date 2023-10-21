@@ -13,7 +13,7 @@ interface PArgs {
   target: number;
 }
 
-const getArguments = (args: string[]): PArgs => {
+export const getArguments = (args: string[]): PArgs => {
   if (args.length < 4) throw new Error('Not many arguments');
 
   const target = Number(args[2]);
@@ -28,7 +28,7 @@ const getArguments = (args: string[]): PArgs => {
   };
 };
 
-const calculateExercise = (hours: number[], target: number): Result => {
+export const calculateExercise = (hours: number[], target: number): Result => {
   const periodLength: number = hours.length;
   const trainingDays: number = hours.filter((h) => h > 0).length;
   const average: number = hours.reduce((a, b) => a + b, 0) / periodLength;
