@@ -5,6 +5,4 @@ const getAll = (): Diagnosis[] => {
   return data;
 };
 
-export default {
-  getAll,
-};
+export default { getAll };
