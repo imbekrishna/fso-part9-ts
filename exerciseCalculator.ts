@@ -8,12 +8,7 @@ interface Result {
   average: number;
 }
 
-interface PArgs {
-  hours: number[];
-  target: number;
-}
-
-export const getArguments = (args: string[]): PArgs => {
+export const getArguments = (args: string[]) => {
   if (args.length < 4) throw new Error('Not many arguments');
 
   const target = Number(args[2]);
@@ -62,16 +57,3 @@ export const calculateExercise = (hours: number[], target: number): Result => {
     average,
   };
 };
-
-try {
-  const { target, hours } = getArguments(process.argv);
-  console.log(calculateExercise(hours, target));
-} catch (error) {
-  let errorMessage = 'Something went wrong. ';
-
-  if (error instanceof Error) {
-    errorMessage = errorMessage.concat(error.message);
-  }
-
-  console.log(errorMessage);
-}
