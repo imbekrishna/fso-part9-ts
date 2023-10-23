@@ -24,4 +24,19 @@ router.post('/', (req, res) => {
   }
 });
 
+router.get('/:id', (req, res) => {
+  try {
+    const patient = patientService.getOne(req.params.id);
+    res.json(patient);
+  } catch (error) {
+    let errorMessage = 'Something went wrong.';
+
+    if (error instanceof Error) {
+      errorMessage += ` Error: ${error.message}`;
+    }
+
+    res.status(404).json({ error: errorMessage });
+  }
+});
+
 export default router;

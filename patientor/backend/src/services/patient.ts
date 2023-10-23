@@ -14,8 +14,18 @@ const getAll = (): SanitizedPatient[] => {
   });
 };
 
+const getOne = (id: string) => {
+  const patient = data.find((p) => p.id === id);
+
+  if (patient) {
+    return patient;
+  }
+
+  throw new Error(`User with id: ${id} not found.`);
+};
+
 const addPatient = (patient: NewPatient): Patient => {
-  const id:string = uuid();
+  const id: string = uuid();
   const newPatient = {
     id,
     ...patient,
@@ -29,4 +39,5 @@ const addPatient = (patient: NewPatient): Patient => {
 export default {
   getAll,
   addPatient,
+  getOne,
 };
