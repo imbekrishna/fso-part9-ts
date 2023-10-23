@@ -1,5 +1,10 @@
 import data from '../data/patients';
-import { NewPatient, Patient, SanitizedPatient } from '../types';
+import {
+  NewEntry,
+  NewPatient,
+  Patient,
+  SanitizedPatient,
+} from '../types';
 import { v1 as uuid } from 'uuid';
 
 const getAll = (): SanitizedPatient[] => {
@@ -36,8 +41,25 @@ const addPatient = (patient: NewPatient): Patient => {
   return newPatient;
 };
 
+const addEntry = (patientId: string, newEntry: NewEntry): Patient => {
+  const patient = getOne(patientId);
+  if (patient) {
+    const id: string = uuid();
+    const addedEntry = {
+      id,
+      ...newEntry,
+    };
+
+    patient.entries.push(addedEntry);
+    return patient;
+  }
+
+  throw new Error('Error adding entry!');
+};
+
 export default {
   getAll,
   addPatient,
   getOne,
+  addEntry,
 };
