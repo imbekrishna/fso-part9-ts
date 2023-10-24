@@ -38,10 +38,10 @@ const parseEntries = (entries) => {
     return entries;
 };
 const parseCodes = (entries) => {
-    if (!Array.isArray(entries) || entries.some((e) => !isString(e))) {
+    if (!Array.isArray(entries)) {
         throw new Error('Incorrect or missing diagnosis codes');
     }
-    return entries.map((e) => String(e));
+    return entries;
 };
 const isType = (param) => {
     return Object.values(types_1.EntryType)

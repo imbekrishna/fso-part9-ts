@@ -54,11 +54,11 @@ const parseEntries = (entries: unknown): Entry[] => {
 };
 
 const parseCodes = (entries: unknown): Diagnosis['code'][] => {
-  if (!Array.isArray(entries) || entries.some((e) => !isString(e))) {
+  if (!Array.isArray(entries)) {
     throw new Error('Incorrect or missing diagnosis codes');
   }
 
-  return entries.map((e) => String(e));
+  return entries as Diagnosis['code'][];
 };
 
 const isType = (param: string): param is EntryType => {
